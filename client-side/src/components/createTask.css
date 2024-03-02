@@ -1,24 +1,29 @@
-.container{
-    border: 1px solid;
-    height: 220px;
-    width: 600px;
+.createContainer{
     padding: 20px;
 }
-
-.form-group{
+.createHeading{
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+.createFormGroup{
     display: flex;
     padding: 10px 0;
 }
-.form-group label{
+.createFormGroup label{
     flex: 1;
 }
-.form-group input,textarea{
-    width: 85%;
+.createFormGroup input{
+    width: 80%;
+    height: 30px
 }
-.container button{
+.description{
+    height: 80px;
+}
+.createButton{
     position: relative;
     left: 50%;
+    margin-top: 20px;
     transform: translateX(-50%);
-    padding: 5px;
 }
 

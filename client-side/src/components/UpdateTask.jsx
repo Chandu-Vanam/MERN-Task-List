@@ -31,7 +31,6 @@ const UpdateTask = ({ _id, handleClose, handleEdited }) => {
     <div>
        <form onSubmit={(e) => {
         handleSubmit(e);
-        handleEdited();
         handleClose();
        }} className="form-container">
             <label htmlFor="title" className="label">Title</label>

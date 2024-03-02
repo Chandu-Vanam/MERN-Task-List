@@ -1,6 +1,17 @@
 .app{
+    display: flex;
+}
+.right-container{
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
+    top: 10%;
+    left: 60%;
+    width: 30%;
+    border: 1px solid;
+}
+.left-container{
+    position: absolute;
+    top: 10%;
+    left: 10%;
+    width: 40%;
+    border: 1px solid;
 }

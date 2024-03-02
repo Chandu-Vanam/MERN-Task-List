@@ -1,28 +1,29 @@
 import React, { useEffect, useState } from 'react'
 import './showTask.css';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import UpdateTask from './UpdateTask'
 
 const TodoCard = ({ data, handleEdit, handleDelete }) => {
   const {_id , title, description } = data;
 
   return (
-    <li key={_id}>
-      <div className='title-description'>
-        <h3>{title}</h3>
-        <p>{description}</p>
+    <li key={_id} className='showListItem'>
+      <div className='showTitleDesc'>
+        <h3 className='showTitle'>{title}</h3>
+        <p className='showDesc'>{description}</p>
       </div>
 
-      <div className='button-container'>
-        <button className='button' name={_id} onClick={handleEdit}>edit</button>
-        <button className='button' name={_id} onClick={handleDelete}>delete</button>
+      <div className='showButtonContainer'>
+        <button className='button editBtn' name={_id} onClick={handleEdit}>edit</button>
+        <button className='button removeBtn' name={_id} onClick={handleDelete}>Remove</button>
       </div>
+      <hr className='showLine' />
     </li>
   )
 }
 
-const ShowTask = () => {
+const ShowTask = (props) => {
 
   const [task, setTask] = useState([]);
   const [open, setOpen] = useState(false);
@@ -40,11 +41,6 @@ const ShowTask = () => {
     })
   },[update]);
 
-  const handleEdit = (e) => {
-    setId(e.target.name);
-    setOpen(true);
-  }
-
   const handleUpdate = (e) => {
     console.log("update:", update, !update);
     setUpdate(!update);
@@ -58,21 +54,23 @@ const ShowTask = () => {
     });
   }
 
+  const handleEdit = (e) => {
+    setId(e.target.name);
+    setOpen(true);
+  }
   const handleClose = () => {
     setId('');
     setOpen(false);
   }
 
   return (
-    <div className='list-container'>
-      <Link to='/create-task' className='button-new' >
-        <button className='button'>New</button>
-      </Link>
-      <div className="contents">
-        <h1>TASKS: </h1>
-        <ul className='list-container'>
-          {task.map((data) => {
-            return <TodoCard data={data} handleEdit={handleEdit} handleDelete={handleDelete} />
+    <div className='showContainer'>
+      {/* <Link to='/create-task' className='button-new' > */}
+        <h1 className='showHeading'>Your Tasks </h1>
+      <div className="showContents">
+        <ul className='showListItems'>
+          {task.map((data,ind) => {
+            return <TodoCard key={ind} data={data} handleEdit={handleEdit} handleDelete={handleDelete} />
           })}
         </ul>
       </div>

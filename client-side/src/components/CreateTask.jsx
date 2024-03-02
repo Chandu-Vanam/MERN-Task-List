@@ -1,15 +1,23 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './createTask.css'
 import axios from 'axios'
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 
-const CreateTask = () => {
+const CreateTask = (props) => {
 
   const [data, setData] = useState({title: "", description:"" });
 
   const handleChange = (e) => {
     setData((data) => ({...data, [e.target.name]: e.target.value}));
   }
+
+  
+
+  useEffect(() => {
+    if (props.taskToEdit) {
+      setData(props.taskToEdit);
+    }
+  }, [props.taskToEdit]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -33,23 +41,19 @@ const CreateTask = () => {
   }
 
   return (
-    <div className='container'>
-      <Link to="/" className='button-back'>
-        <button type='button' className="button">
-          back
-        </button>
-      </Link>
+    <div className='createContainer'>
       <section className='contents'>
+        <h1 className='createHeading'>Create Task</h1>
         <form onSubmit={handleSubmit} className="form-container" noValidate>
-          <div className="form-group">
+          <div className="createFormGroup">
               <label htmlFor="title">Title</label>
               <input type="text" name='title' value={data.title} onChange={handleChange} id='title'/>
           </div>
-          <div className="form-group">
+          <div className="createFormGroup">
               <label htmlFor="desc">Description</label>
-              <input name='description' value={data.description} onChange={handleChange}  id="description" />
+              <input name='description' className='description' value={data.description} onChange={handleChange}  id="description" />
           </div>
-          <button type='submit' className='button'>Create Task</button>
+          <button type='submit' className='createButton'>Create </button>
         </form>
       </section>
 
